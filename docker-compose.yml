@@ -1,0 +1,17 @@
+services:
+  neo4j:
+    image: neo4j:5.24.1
+    container_name: neo4j
+    ports:
+      - "7474:7474" # http://localhost:7474
+      - "7687:7687" # Bolt protocol
+    environment:
+      NEO4J_AUTH: neo4j/test12345
+      NEO4J_dbms_logs_debug_level: DEBUG
+      NEO4J_dbms_logs_security_level: DEBUG
+    volumes:
+      - neo4j-data:/var/lib/neo4j/data
+    restart: unless-stopped
+
+volumes:
+  neo4j-data:
